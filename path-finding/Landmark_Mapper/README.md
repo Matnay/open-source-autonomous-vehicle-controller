@@ -13,24 +13,27 @@ Code for detecting and mapping landmarks on Raspberry Pi using the [EfficientDet
 
 ### Installation
 Run the following from the root of the cloned repository. Give permission and execute the environment setup and installation scripts 
-```
+```bash
 cd <PATH_TO_REPO>/open-source-autonomous-vehicle-controller/path-finding
 chmod u+x scripts/install/env.sh scripts/install/install.sh scripts/install/install_landmark_mapper.sh
 source scripts/install/env.sh
 source scripts/install/install.sh
+```
+This changes the directory to where you will run the detection scripts. You need to go to the <PATH_TO_REPO>/open-source-autonomous-vehicle-controller/path-finding directory to install the landmark mapper:
+```bash
 source scripts/install/install_landmark_mapper.sh
 ```
 
 ### Inference and Mapping
 Execute landmark mapper:<br>
-```
+```bash
 cd <PATH_TO_REPO>/open-source-autonomous-vehicle-controller/path-finding
 source osavc_path_finding/bin/activate
 cd examples/lite/examples/object_detection/raspberry_pi/
 python landmark_detect_map.py --model cone_detection.tflite --source output.avi
 ```
 Execute landmark mapper on Raspberry Pi with Coral Edge TPU:<br>
-```
+```bash
 cd <PATH_TO_REPO>/open-source-autonomous-vehicle-controller/path-finding
 source osavc_path_finding/bin/activate
 cd examples/lite/examples/object_detection/raspberry_pi/
@@ -47,7 +50,7 @@ Adapt configuration for your use case by changing data in the yaml file:<br>
             --num_threads: The number of CPU threads to run the model.
             --enable_edgetpu: True/False whether the model is a EdgeTPU model.
     Example:
- python landmark_detect_map.py --model cone_detection.tflite --source 0 --num_threads 4 --enableEdgeTPU --labels cone_labels.txt
+ python landmark_detect_map.py --model cone_detection_edgetpu.tflite --source 0 --num_threads 4 --enableEdgeTPU --labels cone_labels.txt
 ```
 
 #### Debug
